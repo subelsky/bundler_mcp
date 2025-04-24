@@ -1,0 +1,14 @@
+#! /usr/bin/env ruby
+
+require "bundler/setup" # TODO: needed?
+require "logger"
+require_relative "../lib/bundler_mcp/server"
+
+# Set this up by running `bundle binstubs bundler_mcp`;
+# your client will then able to run `bin/bundler_mcp`
+# in the correct Bundler environment
+
+logfile_path = ENV.fetch("BUNDLER_MCP_LOGFILE", nil)
+logger = Logger.new(logfile_path || File::NULL)
+
+BundlerMCP::Server.run(logger:)

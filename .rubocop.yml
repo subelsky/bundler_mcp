@@ -1,0 +1,27 @@
+plugins:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'bundler_mcp.gemspec'
+
+RSpec/ExampleLength:
+  Max: 20
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Exclude:
+    - 'exe/*'
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes

@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "bundler-mcp": {
+      "command": "/Users/yourname/your_project/bin/bundler_mcp",
+      "env": {
+        "BUNDLER_MCP_LOG_FILE": "/Users/yourname/your_project/log/mcp.log"
+      }
+    }
+  }
+}
