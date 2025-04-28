@@ -46,7 +46,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "bundler", "~> 2.6"
-  spec.add_dependency "fast-mcp", "~> 1.2"
-  # HACK: temporary; fast-mcp requires rack but does not declare it as a dependency
-  spec.add_dependency "rack", "~> 3.1"
+  spec.add_dependency "fast-mcp", "~> 1.3"
 end
