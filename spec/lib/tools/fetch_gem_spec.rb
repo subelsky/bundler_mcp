@@ -24,6 +24,11 @@ RSpec.describe BundlerMCP::Tools::FetchGem do
         result = tool.call(name: "rspec")
         expect(result).to eq(name: "rspec", version: "3.12.0")
       end
+
+      it "forwards include_source to the gem resource" do
+        tool.call(name: "rspec", include_source: true)
+        expect(gem_resource).to have_received(:to_h).with(include_source: true)
+      end
     end
 
     context "when gem doesn't exist" do

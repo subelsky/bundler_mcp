@@ -9,7 +9,7 @@ RSpec.describe BundlerMCP::GemResource do
   let(:gem_spec) { Gem::Specification.find_by_name("bundler_mcp") }
 
   describe "#to_h" do
-    let(:result) { resource.to_h }
+    let(:result) { resource.to_h(include_source: false) }
 
     context "without source files" do
       it "returns basic gem details" do
