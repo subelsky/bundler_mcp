@@ -11,10 +11,6 @@ RSpec.describe "Listing gems" do
     File.expand_path("../../exe/bundler_mcp", __dir__)
   end
 
-  let(:read_io) { nil }
-  let(:write_io) { nil }
-  let(:child_pid) { nil }
-
   before do
     input_read, input_write = IO.pipe
     output_read, output_write = IO.pipe
