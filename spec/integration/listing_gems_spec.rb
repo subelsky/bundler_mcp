@@ -4,50 +4,11 @@ require "spec_helper"
 require "json"
 require "timeout"
 
-# rubocop:disable RSpec/InstanceVariable
-
 RSpec.describe "Listing gems" do
-  let(:server_executable) do
-    File.expand_path("../../exe/bundler_mcp", __dir__)
-  end
-
-  before do
-    input_read, input_write = IO.pipe
-    output_read, output_write = IO.pipe
-
-    @child_pid = fork do
-      # Child process - will run the server
-      input_write.close
-      output_read.close
-
-      # Redirect stdin/stdout to our pipes
-      $stdin.reopen(input_read)
-      $stdout.reopen(output_write)
-
-      # Close unused pipe ends
-      input_read.close
-      output_write.close
-
-      # Run the server
-      load server_executable
-    end
-
-    # Parent process - will run the tests
-    input_read.close
-    output_write.close
-
-    @write_io = input_write
-    @read_io = output_read
-  end
-
-  after do
-    @write_io&.close
-    @read_io&.close
-
-    if @child_pid
-      Process.kill("TERM", @child_pid)
-      Process.wait(@child_pid)
-    end
+  around do |example|
+    setup_server
+    example.run
+    teardown_server
   end
 
   it "returns a list of gems via MCP protocol" do
@@ -60,9 +21,9 @@ RSpec.describe "Listing gems" do
       }
     }.to_json
 
-    @write_io.puts(request)
+    write_io.puts(request)
 
-    response = JSON.parse(@read_io.gets, symbolize_names: true)
+    response = JSON.parse(read_io.gets, symbolize_names: true)
     text = response.dig(:result, :content, 0, :text)
 
     gem_list = JSON.parse(text, symbolize_names: true)
@@ -77,5 +38,3 @@ RSpec.describe "Listing gems" do
     expect(bundler_mcp).to include(version: BundlerMCP::VERSION)
   end
 end
-
-# rubocop:enable RSpec/InstanceVariable
