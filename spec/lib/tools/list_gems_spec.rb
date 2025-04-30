@@ -22,11 +22,12 @@ RSpec.describe BundlerMCP::Tools::ListGems do
   end
 
   describe "#call" do
-    it "returns array of gem details" do
-      expect(tool.call).to eq([
-                                { name: "rspec", version: "3.12.0" },
-                                { name: "rails", version: "7.1.0" }
-                              ])
+    it "returns a JSON array of gem details" do
+      result = JSON.parse(tool.call, symbolize_names: true)
+      expect(result).to eq([
+                             { name: "rspec", version: "3.12.0" },
+                             { name: "rails", version: "7.1.0" }
+                           ])
     end
   end
 end

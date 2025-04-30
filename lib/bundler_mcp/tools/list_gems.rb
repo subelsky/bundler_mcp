@@ -27,7 +27,8 @@ module BundlerMCP
       # Invoke the tool to list all installed gems
       # @return [Array<Hash>] An array of hashes containing gem details
       def call
-        resource_collection.map(&:to_h)
+        data = resource_collection.map(&:to_h)
+        JSON.generate(data)
       end
 
       private
