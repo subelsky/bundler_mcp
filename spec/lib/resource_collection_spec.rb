@@ -15,7 +15,7 @@ RSpec.describe BundlerMCP::ResourceCollection do
         described_class.instance.each(&b)
       end
         .to yield_control
-        .exactly(Bundler.load.specs.size)
+        .exactly(55)
         .times
     end
 

@@ -13,7 +13,10 @@ module BundlerMCP
     def initialize
       @resources = []
 
-      Bundler.load.specs.each do |spec|
+      Gem.loaded_specs.each_value do |spec|
+        # Returns most gems as Bundler::StubSpecification, which does not expose
+        # many gem details, so we convert to Gem::Specification
+        spec = Gem::Specification.find_by_name(spec.name)
         resources << GemResource.new(spec)
       end
     end
