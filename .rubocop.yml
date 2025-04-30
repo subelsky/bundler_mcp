@@ -10,8 +10,16 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'bundler_mcp.gemspec'
 
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/integration/**/*'
+
 RSpec/ExampleLength:
   Max: 20
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/integration/**/*'
 
 RSpec/SpecFilePathFormat:
   Enabled: false
