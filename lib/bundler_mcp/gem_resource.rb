@@ -20,20 +20,15 @@ module BundlerMCP
       @lib_path = @base_path.join("lib").to_s
     end
 
-    # @param include_source [Boolean]
-    #   Whether to include source code paths in returned data. This can increase
-    #   the size of the response and eat into context window limits.
     # @return [Hash] A hash containing the gem's details
-    def to_h(include_source: false)
-      data = { name:,
-               version:,
-               description:,
-               full_gem_path:,
-               lib_path:,
-               top_level_documentation_paths: doc_paths }
-
-      data[:source_files] = @base_path.glob("**/*.{rb,c}").map!(&:to_s) if include_source
-      data
+    def to_h
+      { name:,
+        version:,
+        description:,
+        full_gem_path:,
+        lib_path:,
+        top_level_documentation_paths: doc_paths,
+        source_files: @base_path.glob("**/*.{rb,c,rake}").map!(&:to_s) }
     end
 
     private

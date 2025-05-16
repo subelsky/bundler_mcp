@@ -26,8 +26,8 @@ RSpec.describe BundlerMCP::Server do
 
       expect(mcp_server)
         .to have_received(:register_tool)
-        .with(BundlerMCP::Tools::ListGems)
-        .with(BundlerMCP::Tools::FetchGem)
+        .with(BundlerMCP::Tools::ListProjectGems)
+        .with(BundlerMCP::Tools::GetGemDetails)
     end
 
     it "starts the server" do

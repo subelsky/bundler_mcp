@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "bundler_mcp/tools/fetch_gem"
+require "bundler_mcp/tools/get_gem_details"
 require "bundler_mcp/gem_resource"
 
-RSpec.describe BundlerMCP::Tools::FetchGem do
+RSpec.describe BundlerMCP::Tools::GetGemDetails do
   subject(:tool) { described_class.new([gem_resource]) }
 
   let(:gem_resource) do
@@ -14,23 +14,16 @@ RSpec.describe BundlerMCP::Tools::FetchGem do
 
   describe ".name" do
     it "returns the tool name" do
-      expect(described_class.name).to eq("fetch_gem")
+      expect(described_class.name).to eq("get_gem_details")
     end
   end
 
   describe "#call" do
-    context "when gem exists" do
-      it "returns gem details" do
-        response = tool.call(name: "rspec")
-        result = JSON.parse(response, symbolize_names: true)
+    it "returns gem details" do
+      response = tool.call(name: "rspec")
+      result = JSON.parse(response, symbolize_names: true)
 
-        expect(result).to eq(name: "rspec", version: "3.12.0")
-      end
-
-      it "forwards include_source to the gem resource" do
-        tool.call(name: "rspec", include_source: true)
-        expect(gem_resource).to have_received(:to_h).with(include_source: true)
-      end
+      expect(result).to eq(name: "rspec", version: "3.12.0")
     end
 
     context "when gem doesn't exist" do

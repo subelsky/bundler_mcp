@@ -6,21 +6,22 @@ module BundlerMCP
   module Tools
     # Retrieve details about a specific bundled Ruby gem
     # @see ResourceCollection
-    class FetchGem < FastMcp::Tool
+    class GetGemDetails < FastMcp::Tool
       description <<~DESC
-        Retrieve a specific bundled Ruby gem with version, description, installation path,
-        source code locations, and top-level documentation locations
+        Returns detailed information about one **Ruby Gem** that is installed in the current project.
+
+        ‣ Use this tool when you need to know the version, summary, or source code location for a gem that is installed in the current project.
+        ‣ Do **not** use it for gems that are *not* part of this project.
+
+        The data comes directly from Gemfile.lock and the local installation, so it is always up-to-date and requires **no Internet access**.
       DESC
 
       arguments do
         required(:name).filled(:string).description("The name of the gem to fetch")
-        optional(:include_source).filled(:bool).description("Include source code paths in results")
       end
 
       # @return [String] Tool name exposed by FastMCP to clients
-      def self.name
-        "fetch_gem"
-      end
+      def self.name = "get_gem_details"
 
       # @param collection [ResourceCollection] contains installed gems
       def initialize(collection = ResourceCollection.instance)
@@ -29,16 +30,13 @@ module BundlerMCP
       end
 
       # @param name [String] The name of the gem to fetch
-      # @param include_source [Boolean]
-      #   Whether to include source code paths in results; this can increase
-      #   the size of the response and eat into context window limits
       # @return [Hash] Contains the gem's details, or an error message if the gem is not found
-      def call(name:, include_source: false)
+      def call(name:)
         name = name.to_s.strip
         gem_resource = resource_collection.find { |r| r.name == name }
 
         data = if gem_resource
-                 gem_resource.to_h(include_source:)
+                 gem_resource.to_h
                else
                  { error: "We could not find '#{name}' among the project's bundled gems" }
                end

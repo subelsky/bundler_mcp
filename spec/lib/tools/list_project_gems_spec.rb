@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "bundler_mcp/tools/list_gems"
+require "bundler_mcp/tools/list_project_gems"
 require "bundler_mcp/gem_resource"
 
-RSpec.describe BundlerMCP::Tools::ListGems do
+RSpec.describe BundlerMCP::Tools::ListProjectGems do
   subject(:tool) { described_class.new(gem_resources) }
 
   let(:gem_resources) do
@@ -17,7 +17,7 @@ RSpec.describe BundlerMCP::Tools::ListGems do
 
   describe ".name" do
     it "returns the tool name" do
-      expect(described_class.name).to eq("list_gems")
+      expect(described_class.name).to eq("list_project_gems")
     end
   end
 

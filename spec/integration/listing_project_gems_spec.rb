@@ -12,7 +12,7 @@ RSpec.describe "Listing gems" do
   end
 
   it "returns a list of gems via MCP protocol" do
-    gem_list = request("list_gems")
+    gem_list = request("list_project_gems")
 
     expect(gem_list.size).to eq(55)
     expect(gem_list).to all include(:name, :version, :description, :full_gem_path)

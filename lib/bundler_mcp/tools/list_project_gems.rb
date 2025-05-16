@@ -7,15 +7,19 @@ module BundlerMCP
     # Informs the client of all bundled Ruby gems with their versions, descriptions, installation paths,
     # documentation, and (optionally) source code locations
     # @see https://github.com/yjacquin/fast-mcp/blob/main/docs/tools.md
-    class ListGems < FastMcp::Tool
+    class ListProjectGems < FastMcp::Tool
       description <<~DESC
-        List all bundled Ruby gems with their versions, descriptions, installation paths,
-        and top-level documentation locations
+        Lists **all** Ruby Gems declared in this project's Gemfile/Gemfile.lock, returning for each gem:
+        name, version, short description, install path, and top-level docs path.
+
+        ‣ Use this tool whenever you need to know about the project's gem dependencies and how they work.
+        ‣ This tool reads local files only, so the data is authoritative for the current workspace
+          and never relies on the Internet.
       DESC
 
       # @return [String] Tool name exposed by FastMCP to clients
       def self.name
-        "list_gems"
+        "list_project_gems"
       end
 
       # @param collection [ResourceCollection] contains installed gems
