@@ -12,21 +12,7 @@ RSpec.describe "Listing gems" do
   end
 
   it "returns a list of gems via MCP protocol" do
-    request = {
-      jsonrpc: "2.0",
-      id: 2,
-      method: "tools/call",
-      params: {
-        name: "list_gems"
-      }
-    }.to_json
-
-    write_io.puts(request)
-
-    response = JSON.parse(read_io.gets, symbolize_names: true)
-    text = response.dig(:result, :content, 0, :text)
-
-    gem_list = JSON.parse(text, symbolize_names: true)
+    gem_list = request("list_gems")
 
     expect(gem_list.size).to eq(55)
     expect(gem_list).to all include(:name, :version, :description, :full_gem_path)
