@@ -35,11 +35,15 @@ module BundlerMCP
       # @return [Hash] Contains the gem's details, or an error message if the gem is not found
       def call(name:, include_source: false)
         name = name.to_s.strip
-        resource = resource_collection.find { |r| r.name == name }
+        gem_resource = resource_collection.find { |r| r.name == name }
 
-        return { error: "Gem '#{name}' not found in bundle" } unless resource
+        data = if gem_resource
+                 gem_resource.to_h(include_source:)
+               else
+                 { error: "We could not find '#{name}' among the project's bundled gems" }
+               end
 
-        resource.to_h(include_source:)
+        JSON.generate(data)
       end
 
       private

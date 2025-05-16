@@ -21,7 +21,9 @@ RSpec.describe BundlerMCP::Tools::FetchGem do
   describe "#call" do
     context "when gem exists" do
       it "returns gem details" do
-        result = tool.call(name: "rspec")
+        response = tool.call(name: "rspec")
+        result = JSON.parse(response, symbolize_names: true)
+
         expect(result).to eq(name: "rspec", version: "3.12.0")
       end
 
@@ -33,8 +35,10 @@ RSpec.describe BundlerMCP::Tools::FetchGem do
 
     context "when gem doesn't exist" do
       it "returns error message" do
-        result = tool.call(name: "nonexistent")
-        expect(result).to eq(error: "Gem 'nonexistent' not found in bundle")
+        response = tool.call(name: "nonexistent")
+        result = JSON.parse(response, symbolize_names: true)
+
+        expect(result).to eq(error: "We could not find 'nonexistent' among the project's bundled gems")
       end
     end
   end
