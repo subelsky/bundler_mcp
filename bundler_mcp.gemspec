@@ -46,5 +46,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "bundler", "~> 2.6"
-  spec.add_dependency "fast-mcp", "~> 1.3"
+  spec.add_dependency "fast-mcp", "~> 1.4"
 end
