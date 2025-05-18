@@ -8,7 +8,7 @@ require_relative "../lib/bundler_mcp/server"
 # your client will then able to run `bin/bundler_mcp`
 # in the correct Bundler environment
 
-logfile_path = ENV.fetch("BUNDLER_MCP_LOGFILE", nil)
+logfile_path = ENV.fetch("BUNDLER_MCP_LOG_FILE", nil)
 logger = Logger.new(logfile_path || File::NULL)
 
 BundlerMCP::Server.run(logger:)
