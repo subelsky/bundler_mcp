@@ -78,4 +78,4 @@ module IntegrationSpecHelper
   private_constant :RPC_ARGUMENTS
 end
 
-# rubocop:enable Metrics/AbcSize
+# rubocop:enable Metrics/AbcSize,Metrics/MethodLength
