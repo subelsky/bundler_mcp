@@ -1,6 +1,6 @@
 # BundlerMCP
 
-A Model Context Protocol (MCP) server enabling AI agents to query information about gems in a Ruby project's Gemfile, including source code and metadata. Built with [fast-mcp](https://github.com/yjacquin/fast-mcp).
+A Model Context Protocol (MCP) server enabling AI agents to query information about dependencies in a Ruby project's `Gemfile`. Built with [fast-mcp](https://github.com/yjacquin/fast-mcp).
 
 [![CI](https://github.com/subelsky/bundler_mcp/actions/workflows/main.yml/badge.svg)](https://github.com/subelsky/bundler_mcp/actions/workflows/main.yml)
 [![Gem Version](https://badge.fury.io/rb/bundler_mcp.svg)](https://badge.fury.io/rb/bundler_mcp)
