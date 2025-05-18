@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "pathname"
+
 Pathname(__dir__).glob("tools/*.rb").each do |tool|
   require tool
 end

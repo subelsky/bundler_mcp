@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "forwardable"
+require "pathname"
 
 module BundlerMCP
   # Represents a Ruby gem and its associated data
