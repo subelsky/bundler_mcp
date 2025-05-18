@@ -14,35 +14,37 @@ bundle add bundler_mcp --group=development
 
 ## Usage
 
-First, generate the binstub:
+1) Generate the binstub:
 
 ```bash
 bundle binstubs bundler_mcp
 ```
 
-Then create an `mcp.json` configuration file. Here are some example configurations:
+2) Configure your client to execute the binstub. Here are examples that work for Claude and Cursor:
 
-### Basic Configuration Example
+### Basic Example (mcp.json)
 
 ```json
 {
   "mcpServers": {
     "bundler-mcp": {
-      "command": "/Users/mike/cool_app/bin/bundler_mcp"
+      "command": "/Users/mike/my_project/bin/bundler_mcp"
     }
   }
 }
 ```
 
-### Configuration with Logging and Custom Gemfile
+### Example with logging and explicit Gemfile
 
 ```json
 {
   "mcpServers": {
     "bundler-mcp": {
-      "command": "/Users/subelsky/code/bundler_mcp/bin/bundler_mcp",
+      "command": "/Users/mike/my_project/bin/bundler_mcp",
+
       "env": {
-        "BUNDLER_MCP_LOG_FILE": "/Users/subelsky/code/mcp.log"
+        "BUNDLER_MCP_LOG_FILE": "/Users/mike/my_project/log/mcp.log",
+        "BUNDLE_GEMFILE": "/Users/mike/my_project/subdir/Gemfile"
       }
     }
   }
@@ -62,7 +64,7 @@ Lists all bundled Ruby gems with their:
 - Installation paths
 - Top-level documentation locations (e.g. `README` and `CHANGELOG`)
 
-![list_project_gems tool](./docs/list_project_gems_screenshot.png)
+![list_project_gems tool](/docs/list_project_gems.png)
 
 #### get_gem_details
 
@@ -74,7 +76,7 @@ Retrieves detailed information about a specific gem, including:
 - Top-level documentation locations
 - Source code file locations
 
-![get_gem_details tool](./docs/get_gem_details_screenshot.png)
+![get_gem_details tool](/docs/get_gem_details.png)
 
 ## Environment Variables
 
@@ -83,7 +85,7 @@ Retrieves detailed information about a specific gem, including:
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies and `bundle exec rspec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 ### Testing with the MCP Inspector
 
