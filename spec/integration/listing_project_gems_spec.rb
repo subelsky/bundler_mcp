@@ -14,6 +14,7 @@ RSpec.describe "Listing gems" do
   it "returns a list of gems via MCP protocol" do
     gem_list = request("list_project_gems")
 
+    # this is a little brittle, but this number should be stable between CI and local development environments;
     expect(gem_list.size).to eq(55)
     expect(gem_list).to all include(:name, :version, :description, :full_gem_path)
 
