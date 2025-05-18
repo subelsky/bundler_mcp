@@ -33,7 +33,7 @@ module BundlerMCP
       # @return [Hash] Contains the gem's details, or an error message if the gem is not found
       def call(name:)
         name = name.to_s.strip
-        gem_resource = resource_collection.find { |r| r.name == name }
+        gem_resource = resource_collection.find { |r| r.name.casecmp?(name) }
 
         data = if gem_resource
                  gem_resource.to_h(include_source_files: true)
