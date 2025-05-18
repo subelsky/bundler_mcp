@@ -21,14 +21,17 @@ module BundlerMCP
     end
 
     # @return [Hash] A hash containing the gem's details
-    def to_h
-      { name:,
-        version:,
-        description:,
-        full_gem_path:,
-        lib_path:,
-        top_level_documentation_paths: doc_paths,
-        source_files: @base_path.glob("**/*.{rb,c,rake}").map!(&:to_s) }
+    def to_h(include_source_files: false)
+      base_hash = { name:,
+                    version:,
+                    description:,
+                    full_gem_path:,
+                    lib_path:,
+                    top_level_documentation_paths: doc_paths }
+
+      base_hash[:source_files] = @base_path.glob("**/*.{rb,c,rake}").map!(&:to_s) if include_source_files
+
+      base_hash
     end
 
     private

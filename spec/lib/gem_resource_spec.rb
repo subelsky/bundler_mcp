@@ -21,16 +21,18 @@ RSpec.describe BundlerMCP::GemResource do
       end
     end
 
-    it "includes source file paths" do
-      expect(resource.to_h.fetch(:source_files)).to include(
-        File.join(gem_spec.full_gem_path, "lib/bundler_mcp/gem_resource.rb")
-      )
-    end
-
     it "includes top-level documentation paths" do
       expect(resource.to_h.fetch(:top_level_documentation_paths)).to include(
         File.join(gem_spec.full_gem_path, "README.md")
       )
+    end
+
+    context "when include_source_files is true" do
+      it "includes source file paths" do
+        expect(resource.to_h(include_source_files: true).fetch(:source_files)).to include(
+          File.join(gem_spec.full_gem_path, "lib/bundler_mcp/gem_resource.rb")
+        )
+      end
     end
   end
 end

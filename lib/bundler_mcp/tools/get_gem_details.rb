@@ -36,7 +36,7 @@ module BundlerMCP
         gem_resource = resource_collection.find { |r| r.name == name }
 
         data = if gem_resource
-                 gem_resource.to_h
+                 gem_resource.to_h(include_source_files: true)
                else
                  { error: "We could not find '#{name}' among the project's bundled gems" }
                end
