@@ -15,13 +15,13 @@ bundle add bundler_mcp --group=development
 
 ## Usage
 
-1) Generate the binstub:
+1. Generate the binstub:
 
 ```bash
 bundle binstubs bundler_mcp
 ```
 
-2) Configure your client to execute the binstub. Here are examples that work for Claude and Cursor:
+2. Configure your client to execute the binstub. Here are examples that work for Claude and Cursor:
 
 ### Basic Example (mcp.json)
 
@@ -51,6 +51,10 @@ bundle binstubs bundler_mcp
   }
 }
 ```
+
+### Documentation
+
+[Available on RubyDoc](https://www.rubydoc.info/gems/bundler_mcp/)
 
 ### Available Tools
 
