@@ -2,6 +2,10 @@
 
 This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2025-06-03
+
+- Add GitHub Action for trusted publishing to RubyGems
+
 ## [0.2.0] - 2025-05-18
 
 - Fix `BUNDLER_MCP_LOG_FILE` environment variable name bug
