@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bundler_mcp (0.2.1)
+    bundler_mcp (0.2.1.1)
       bundler (~> 2.6)
       fast-mcp (~> 1.4)
 
